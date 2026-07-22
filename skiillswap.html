@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillSwap — Trade What You Know</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f3ede0;
+    --paper-dark: #e8dfc9;
+    --ink: #1f2a24;
+    --mustard: #d9a441;
+    --sage: #5c7a5e;
+    --clay: #b5563c;
+    --line: #1f2a24;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(circle, rgba(31,42,36,0.08) 1px, transparent 1px);
+    background-size: 22px 22px;
+    color: var(--ink);
+    font-family: 'Space Mono', monospace;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* NAVBAR */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  .logo span { color: var(--clay); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 22px;
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    background: var(--mustard);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+  .btn-outline {
+    background: transparent;
+    box-shadow: none;
+  }
+  .btn-outline:hover {
+    background: var(--ink);
+    color: var(--paper);
+    transform: none;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 90px 0 70px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 50px;
+    align-items: center;
+  }
+
+  .eyebrow {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--sage);
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    line-height: 1.02;
+    margin-bottom: 22px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--clay);
+  }
+
+  .hero p {
+    font-size: 1rem;
+    max-width: 46ch;
+    margin-bottom: 30px;
+    color: #3a4740;
+  }
+
+  .hero-actions { display: flex; gap: 16px; }
+
+  /* Signature element: a swap ticket, styled like a two-sided trade stub */
+  .ticket {
+    background: var(--paper-dark);
+    border: 2px dashed var(--ink);
+    border-radius: 8px;
+    padding: 28px;
+    position: relative;
+    transform: rotate(-2deg);
+    box-shadow: 6px 6px 0 rgba(31,42,36,0.15);
+  }
+  .ticket::before, .ticket::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 22px;
+    height: 22px;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+  .ticket::before { left: -12px; }
+  .ticket::after { right: -12px; }
+
+  .ticket-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    color: var(--sage);
+    font-weight: 700;
+  }
+
+  .ticket h3 { font-size: 1.3rem; margin-bottom: 6px; }
+  .ticket .for { color: var(--clay); font-weight: 700; margin: 10px 0 4px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;}
+  .ticket .divider {
+    border-top: 1px dashed var(--ink);
+    margin: 16px 0;
+  }
+
+  /* HOW IT WORKS */
+  section { padding: 70px 0; }
+  .section-head { margin-bottom: 46px; max-width: 60ch; }
+  .section-head .eyebrow { margin-bottom: 10px; }
+  .section-head h2 { font-size: 2.1rem; }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .step {
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    padding: 26px;
+    background: var(--paper-dark);
+  }
+
+  .step .num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--mustard);
+    -webkit-text-stroke: 1.5px var(--ink);
+    line-height: 1;
+    
+    margin-bottom: 14px;
+  }
+
+  .step h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .step p { font-size: 0.88rem; color: #3a4740; }
+
+  /* CATEGORIES — grid of tickets */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+
+  .cat-ticket {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    padding: 22px;
+    transition: transform 0.15s ease;
+  }
+  .cat-ticket:hover { transform: translateY(-4px); }
+  .cat-ticket .tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .tag.offer { background: var(--sage); color: var(--paper); }
+  .tag.seek { background: var(--clay); color: var(--paper); }
+  .cat-ticket h3 { font-size: 1.15rem; margin-bottom: 6px; }
+  .cat-ticket p { font-size: 0.85rem; color: #3a4740; }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .quote {
+    border-left: 3px solid var(--mustard);
+    padding-left: 18px;
+  }
+  .quote p { font-size: 0.92rem; margin-bottom: 12px; font-style: italic; }
+  .quote .who { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--sage); font-weight: 700; }
+
+  /* CTA */
+  .cta-band {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 8px;
+    padding: 56px;
+    text-align: center;
+  }
+  .cta-band h2 { font-size: 2rem; margin-bottom: 14px; }
+  .cta-band p { color: #cfd6cf; margin-bottom: 28px; }
+  .cta-band .btn { background: var(--mustard); box-shadow: 3px 3px 0 var(--paper); }
+  .cta-band .btn:hover { box-shadow: 5px 5px 0 var(--paper); }
+
+  /* FOOTER */
+  footer {
+    border-top: 2px solid var(--ink);
+    padding: 36px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+  .footer-links { display: flex; gap: 22px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* MOBILE */
+  @media (max-width: 800px) {
+    .hero { grid-template-columns: 1fr; padding-top: 50px; }
+    .nav-links { display: none; }
+    .steps, .categories-grid, .testimonials { grid-template-columns: 1fr; }
+    .ticket { transform: none; margin-top: 20px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--clay);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <div class="logo">Skill<span>Swap</span></div>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#browse">Browse</a>
+      <a href="#stories">Stories</a>
+      <a href="#" class="btn btn-outline">Log in</a>
+      <a href="#" class="btn">Sign up</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">No money changes hands</div>
+      <h1>Trade what you <em>know</em> for what you <em>need</em>.</h1>
+      <p>Post a skill you can teach, find someone who can teach you something back, and swap — no fees, no subscriptions, just an even trade.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn">Post a skill</a>
+        <a href="#browse" class="btn btn-outline">Browse trades</a>
+      </div>
+    </div>
+
+    <div class="ticket">
+      <div class="ticket-row"><span>Ticket #0142</span><span>Open</span></div>
+      <h3>Maria offers Guitar Lessons</h3>
+      <div class="for">Seeking in return</div>
+      <p>Beginner Excel &amp; spreadsheet basics</p>
+      <div class="divider"></div>
+      <div class="ticket-row"><span>3 swaps completed</span><span>★ 4.9</span></div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="section-head">
+      <div class="eyebrow">How it works</div>
+      <h2>Three steps, no middleman.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>Post a skill</h3>
+        <p>Say what you can teach and what you'd like to learn in exchange. Takes two minutes.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>Get matched</h3>
+        <p>We surface people whose offer matches your ask — and whose ask matches your offer.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>Swap sessions</h3>
+        <p>Meet online or locally, teach each other, and mark the trade complete when you're done.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="browse">
+    <div class="section-head">
+      <div class="eyebrow">Browse trades</div>
+      <h2>Open tickets this week.</h2>
+    </div>
+    <div class="categories-grid">
+      <div class="cat-ticket">
+        <span class="tag offer">Offering</span>
+        <span class="tag seek">Seeking</span>
+        <h3>Spanish Conversation ⇄ Home Baking</h3>
+        <p>Native speaker, casual weekly practice, in exchange for sourdough basics.</p>
+      </div>
+      <div class="cat-ticket">
+        <span class="tag offer">Offering</span>
+        <span class="tag seek">Seeking</span>
+        <h3>Python Basics ⇄ Photography</h3>
+        <p>Beginner-friendly coding lessons for portrait photography tips.</p>
+      </div>
+      <div class="cat-ticket">
+        <span class="tag offer">Offering</span>
+        <span class="tag seek">Seeking</span>
+        <h3>Yoga Sessions ⇄ Resume Editing</h3>
+        <p>Weekly beginner yoga for help polishing a job application.</p>
+      </div>
+      <div class="cat-ticket">
+        <span class="tag offer">Offering</span>
+        <span class="tag seek">Seeking</span>
+        <h3>Woodworking ⇄ Video Editing</h3>
+        <p>Basic furniture-building for help editing a YouTube channel.</p>
+      </div>
+      <div class="cat-ticket">
+        <span class="tag offer">Offering</span>
+        <span class="tag seek">Seeking</span>
+        <h3>Piano ⇄ Public Speaking</h3>
+        <p>Intro piano lessons for coaching on presentations and interviews.</p>
+      </div>
+      <div class="cat-ticket">
+        <span class="tag offer">Offering</span>
+        <span class="tag seek">Seeking</span>
+        <h3>Gardening ⇄ Budgeting</h3>
+        <p>Growing vegetables at home for help building a monthly budget.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="stories">
+    <div class="section-head">
+      <div class="eyebrow">Stories</div>
+      <h2>What people traded.</h2>
+    </div>
+    <div class="testimonials">
+      <div class="quote">
+        <p>I taught someone conversational French and walked away with a working budget spreadsheet I still use.</p>
+        <div class="who">Amara, Lagos</div>
+      </div>
+      <div class="quote">
+        <p>Traded three guitar lessons for a logo design. Fair, simple, and neither of us spent a cent.</p>
+        <div class="who">Devon, Austin</div>
+      </div>
+      <div class="quote">
+        <p>My neighbor taught me basic car maintenance in exchange for baking lessons. Now we trade every month.</p>
+        <div class="who">Priya, Pune</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="cta-band">
+      <h2>Got a skill? Someone needs it.</h2>
+      <p>Post your first ticket in under two minutes.</p>
+      <a href="#" class="btn">Post a skill</a>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 SkillSwap. Built for trading, not spending.</div>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Guidelines</a>
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
