@@ -20,6 +20,6 @@ const intfunc = setInterval(() => {
     console.log("This is a Interval Function ")
     
 },1000)
-
+//To find the location 
 console.log(__dirname);
 console.log(__filename)
