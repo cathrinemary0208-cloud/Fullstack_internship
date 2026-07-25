@@ -7,5 +7,6 @@ console.log(data)
 //available in the same name
 const {year} = require("./data")
 console.log(year)
-
-
+//default modules
+const os = require('os')
+console.log(os)
