@@ -35,5 +35,6 @@ else if(input == "delete")
 else
 {
     data.tasks.push(task)
+     fs.writeFileSync("./tasks.json", JSON.stringify(data));
     console.log("Task added Successsfully")
 }
