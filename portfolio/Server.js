@@ -1,6 +1,6 @@
 const http = require('http');
 const fs = require('fs')
-const readStream = fs.createReadStream('./index.html',{encoding:"utf8"})
+const readStream = fs.createReadStream('./portfolio_sample.html',{encoding:"utf8"})
 
 //we are creating a server 
 
@@ -16,7 +16,7 @@ const server = http.createServer((request,response) => {
   response.setHeader('Content-type','text/html');
   //writing the response 
   
-  fs.readFile('./index.html',(err,data)=>
+  fs.readFile('./portfolio_sample.html',(err,data)=>
   {
     if(err)
     {
@@ -25,6 +25,7 @@ const server = http.createServer((request,response) => {
     else
     {
       response.write(data);
+      response.write("Hello buddy ,,")
       response.end();
     }
   })
