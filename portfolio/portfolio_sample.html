@@ -1,3 +1,5 @@
+
+
 <!--Just a sample website /////-->
 <!DOCTYPE html>
 <html lang="en">
@@ -15,17 +17,21 @@
             background-color: black;
             color: purple;
         }
+        nav {
+            text-align: right;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 4px;
+        }
         nav a {
             color: purple;
             text-shadow: 5px 6px 7px black;
             font-style: italic;
             text-decoration: none;
         }
-        nav {
-            text-align: right;
-        }
-        .name {
-            display: inline;
+        .logo {
+            display: inline-block;
             color: white;
             font-style: italic;
             font-size: 1.5rem;
@@ -36,6 +42,7 @@
             justify-content: space-between;
             flex-wrap: wrap;
             padding: 10px 20px;
+            gap: 10px;
         }
         .intro-text {
             color: white;
@@ -43,7 +50,7 @@
         .view-btn, .contact-btn {
             font-weight: bold;
             padding: 10px 25px;
-            margin: 10px;
+            margin: 10px 10px 0 0;
             border-radius: 6px;
             cursor: pointer;
             font-size: 1rem;
@@ -78,15 +85,27 @@
         }
         .intro-box {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             flex: 1 1 400px;
         }
         .intro-box p {
             padding: 5px 0;
         }
-        .skills {
+        .hero-name {
+            display: block;
+            color: white;
+            font-style: italic;
+            font-size: 1.5rem;
+            margin: 5px 0;
+        }
+        .btn-row {
             display: flex;
             flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .skills {
+            display: flex;
+            flex-direction: column;
             flex: 1 1 400px;
         }
         #about-text {
@@ -99,11 +118,12 @@
         .about-content {
             margin: 15px;
         }
+ 
     </style>
 </head>
 <body>
     <header>
-        <p class="name">Portfolio</p>
+        <p class="logo">Portfolio</p>
         <nav>
             <a href="#">Home</a> |
             <a href="#">About</a> |
@@ -114,18 +134,20 @@
         </nav>
     </header>
     <hr>
-
+ 
     <div class="main-content">
         <div class="intro-box">
             <p>HI !! I'm</p>
-            <p class="name">Rubena Cathrine Mary .M</p>
+            <p class="hero-name">Rubena Cathrine Mary .M</p>
             <p>Aspiring Developer and CyberSecurity enthusiast</p>
             <p class="intro-text">Build clean, responsible, and user friendly web
                 applications and love to solve problems through code</p>
-            <button class="view-btn" type="button">View my work &#8594;</button>
-            <button class="contact-btn" type="button">Contact &#9993;</button>
+            <div class="btn-row">
+                <button class="view-btn" type="button">View my work &#8594;</button>
+                <button class="contact-btn" type="button">Contact &#9993;</button>
+            </div>
         </div>
-
+ 
         <div class="skills">
             <div class="about-me">
                 <p id="about-text">&lt;&lt; About Me :</p>
@@ -151,3 +173,6 @@
     </div>
 </body>
 </html>
+ 
+
+

@@ -21,9 +21,12 @@ const server = http.createServer((request,response) => {
     if(err)
     {
       console.log(err.message)
+      response.end()
     }
     else
     {
+
+      //res.end() = response.write + response.end() 
       response.write(data);
       response.write("Hello buddy ,,")
       response.end();
