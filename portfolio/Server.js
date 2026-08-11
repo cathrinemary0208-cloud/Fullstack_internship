@@ -15,7 +15,8 @@ const server = http.createServer((request,response) => {
 
   response.setHeader('Content-type','text/html');
   //writing the response 
-  
+  console.log(request.url)
+
   fs.readFile('./portfolio_sample.html',(err,data)=>
   {
     if(err)
