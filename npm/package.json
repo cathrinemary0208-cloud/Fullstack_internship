@@ -1,0 +1,24 @@
+{
+  "name": "package_json",
+  "version": "1.0.0",
+  "description": "The is the first json package !!!",
+  "homepage": "https://github.com/cathrinemary0208-cloud/Fullstack_internship#readme",
+  "bugs": {
+    "url": "https://github.com/cathrinemary0208-cloud/Fullstack_internship/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cathrinemary0208-cloud/Fullstack_internship.git"
+  },
+  "license": "ISC",
+  "author": "Cathrine",
+  "type": "commonjs",
+  "main": "nodejsCourse_repo",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "lodash": "^4.18.1"
+  }
+}
