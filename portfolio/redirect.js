@@ -20,7 +20,7 @@ const server = http.createServer((request,response)=>
 
         //Redirects to contact page ,sets status Code as 301(permanent redirection) ,end it
         // or else ether things gets executed  -mandatory
-        response.statusCode = 301
+        response.statusCode = 302
         response.setHeader("Location","/contact");
         response.end();
       }
