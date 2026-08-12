@@ -1,3 +1,5 @@
+//Sending html page as a request 
+
 const http = require('http');
 const fs = require('fs')
 const readStream = fs.createReadStream("./portfolio_sample.html",{encoding :"utf-8"})
@@ -11,13 +13,15 @@ const server = http.createServer((request,response)=>
       
       if(request.url == "/portfolio" || request.url == "/")
       {
+        response.statusCode = 200;
          path+="portfolio_sample.html"
          
       }
-      else if(request.url == "/contact")
+      else if(request.url == "/contact" || request.url == "/contact.html")
       {
          //Dont prefix it with a / it takes it as absolute path
-          path+="contact.html"
+           response.statusCode = 200;
+          path+="contact.html" 
         
       }
       else
