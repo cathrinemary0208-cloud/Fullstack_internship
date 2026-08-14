@@ -24,7 +24,16 @@ const products = [
 ]
 app.get("/api/products",(req,res)=>
 {
-    res,send(products)
+    const {query:{filter,value}} = req;
+    console.log({filter,value})
+    if(filter&&value)
+    {
+        //without return it may fall through and give error
+        //filter is the property name ....
+       return res.send(products.filter((product)=>String(product[filter]).toLowerCase().includes(value.toLowerCase())
+        ))
+    }
+    res.send(products)
 })
 app.get("/api/users",(req,res)=>
 {
@@ -72,3 +81,4 @@ app.listen(PORT,()=>
 
 //Query parameters
 
+//http://localhost:3000/api/products?filter=product_name&value=sh
