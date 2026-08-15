@@ -46,9 +46,30 @@ app.use(express.json()); //middleware to convert it as a json file
 app.post("/api/items_",(req,res)=>
 {
     console.log(req.body)
-    return  res.send({ message: "Received", data: req.body });
+    const {body} = req
+    const newUser = {id:items[items.length-1].id+1,...body}
+    items.push(newUser)
+    console.log("Array length after push:", items.length)   
+    console.log(items)   
+    return res.status(201).send(newUser)
 })
-
+//PUT request - to update completely 
+app.put("/api/items/:id",(req,res)=>
+{
+    const id = parseInt(req.params.id)
+    if(isNaN(id))
+    {
+        return res.send({"Message":"Bad Request ,Invalid ID!!!"})
+    }
+    const itemIndex = items.findIndex((item)=>items.id===id)
+    if(items(itemIndex)===-1)
+    {
+       return  res.status(404).send({"Message":"User not found!!!"})
+    }
+     const {body} = req;
+      res.send({id : items[itemIndex],...body})
+     console.log(items)
+})
 
 app.listen(3000,()=>{
     console.log("Server is listening....")
