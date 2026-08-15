@@ -12,6 +12,7 @@ const items = [
   { id: 5, name: "Table Fan", category: "Appliances", price: 22.5 }
 ];
 
+
 app.get("/api/items",(req,res)=>
 {
     const {query:{filter,value}} = req
@@ -22,6 +23,7 @@ app.get("/api/items",(req,res)=>
     res.send(items)
     
 })
+
 app.get("/api/items/:id",(req,res)=>{
     const id = parseInt(req.params.id)
     console.log(id)
@@ -47,6 +49,8 @@ app.post("/api/items_",(req,res)=>
     return  res.send({ message: "Received", data: req.body });
 })
 
+
 app.listen(3000,()=>{
     console.log("Server is listening....")
 })
+
