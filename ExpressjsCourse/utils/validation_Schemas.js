@@ -10,7 +10,6 @@
 //   → validationResult(req)  → reads stored results →"any errors?"
 //   → matchedData(req)       → reads stored results →"give me the valid {name, price, category}"
 
-import { checkSchema } from "express-validator";
 export const createItemValidationSchema = {
 
     name : {
@@ -32,7 +31,6 @@ export const createItemValidationSchema = {
             errorMessage:"Length should be between 3 and 10"
         } ,  
         isString:{
-            options:true,
             errorMessage :"Should be a string"
         }
 
@@ -41,7 +39,12 @@ export const createItemValidationSchema = {
     {
         notEmpty:{
             errorMessage : "price should not be empty"
-        }
+        },
+        isFloat: 
+        { options: { min: 0 },
+         errorMessage: "Price must be a positive number"
+         },
+         toFloat: true,
 
     }
 }
