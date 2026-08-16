@@ -48,3 +48,33 @@ export const createItemValidationSchema = {
 
     }
 }
+
+export const createUserValidationSchema = {
+    name: {
+        notEmpty: {
+            errorMessage: "User name should not be empty"
+        },
+        isLength: {
+            options: { min: 3, max: 30 },
+            errorMessage: "Length should be between 3 and 30"
+        }
+    },
+    age: {
+        notEmpty: {
+            errorMessage: "Age should not be empty"
+        },
+        isInt: {
+            options: { min: 1, max: 120 },
+            errorMessage: "Age must be a whole number between 1 and 120"
+        },
+        toInt: true
+    },
+    email: {
+        notEmpty: {
+            errorMessage: "Email should not be empty"
+        },
+        isEmail: {
+            errorMessage: "Must be a valid email address"
+        }
+    }
+};

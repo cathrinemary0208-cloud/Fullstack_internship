@@ -6,7 +6,7 @@ import { createItemValidationSchema } from "./validation_Schemas.js"
 
 const router = Router()
 
-
+//router is like a small department which organises end points 
 router.get("/api/items", (req, res) => {
     const { query: { filter, value } } = req
     if (filter && value) {
@@ -74,4 +74,5 @@ router.delete("/api/items/:id", getItemIndex, (req, res) => {
     return res.send({ "Message": "Deleted successfully", item: deleted[0] })
 })
 
+//exporting the router 
 export default router

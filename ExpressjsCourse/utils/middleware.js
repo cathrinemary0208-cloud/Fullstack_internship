@@ -1,5 +1,5 @@
 //This file contains Custom middleware 
-import {items} from "./constants.js"
+import {items,users} from "./constants.js"
 export const getItemIndex = (req,res,next)=>{
     //getting the id from the parameter
     const id = parseInt(req.params.id)
@@ -19,3 +19,17 @@ export const getItemIndex = (req,res,next)=>{
     req.id = id;
     next();
 }
+
+export const getUserIndex = (req, res, next) => {
+    const id = parseInt(req.params.id);
+    if (isNaN(id)) {
+        return res.status(400).send({ "Message": "Invalid ID" });
+    }
+    const userIndex = users.findIndex((user) => user.id === id);
+    if (userIndex === -1) {
+        return res.status(404).send({ "Message": "User not found" });
+    }
+    req.id = id;
+    req.userIndex = userIndex;
+    next();
+};
