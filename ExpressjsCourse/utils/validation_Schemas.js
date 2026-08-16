@@ -7,8 +7,8 @@
 //   → validates req.body.category → stores result on req
 //       ↓
 //  route handler runs
-//   → validationResult(req)  → reads stored results → "any errors?"
-//   → matchedData(req)       → reads stored results → "give me the valid {name, price, category}"
+//   → validationResult(req)  → reads stored results →"any errors?"
+//   → matchedData(req)       → reads stored results →"give me the valid {name, price, category}"
 
 import { checkSchema } from "express-validator";
 export const createItemValidationSchema = {
