@@ -1,6 +1,7 @@
 //This files works on avoiding all the Redundant data
 //using custom middleware 
 //and also validation in express js - step1:install express validator( npm i express-validator)
+//This files send cookies
 import express from "express"
 import { checkSchema,validationResult,matchedData } from "express-validator";
 //importing the file 

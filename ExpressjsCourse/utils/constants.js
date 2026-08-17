@@ -9,7 +9,10 @@ export const items = [
 ];
 
 export const users = [
-  { id: 1, name: "Cathrine", age: 20, email: "cathrine@example.com" },
-  { id: 2, name: "Nidi", age: 19, email: "nidi@example.com" },
-  { id: 3, name: "Srinithi", age: 20, email: "srinithi@example.com" },
+  { id: 1, name: "Alice Johnson", email: "alice@example.com", password: "alice123", role: "admin" },
+  { id: 2, name: "Bob Smith", email: "bob@example.com", password: "bob123", role: "user" },
+  { id: 3, name: "Charlie Davis", email: "charlie@example.com", password: "charlie123", role: "user" },
+  { id: 4, name: "Diana Prince", email: "diana@example.com", password: "diana123", role: "moderator" },
+  { id: 5, name: "Ethan Brown", email: "ethan@example.com", password: "ethan123", role: "user" },
+  { id: 6, name: "Cathy", email: "Admin@gmail.com", password: "cathy123", role: "Admin" }
 ];
