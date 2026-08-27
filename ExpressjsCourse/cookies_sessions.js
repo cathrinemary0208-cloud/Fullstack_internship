@@ -8,7 +8,9 @@ import cookieParser from "cookie-parser"
 import session from "express-session"
 import { Strategy as LocalStrategy } from "passport-local"
 import passport from "passport"
+
 const app = express()
+
 
 app.use(session( {
     secret:"This is a secret",//for encryption

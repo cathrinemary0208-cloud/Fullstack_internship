@@ -3,8 +3,14 @@ import { getUserIndex } from "./middleware.js"
 import { users } from "./constants.js"
 import { checkSchema, validationResult, matchedData } from "express-validator"
 import { createUserValidationSchema } from "./validation_Schemas.js"
-
+import mongoose from "mongoose"
+import user from "../mongoose_schema/user.js"
 const router = Router()
+
+mongoose.connect("mongodb://localhost/express")
+.then(()=>console.log("DB Connected"))
+.catch((err)=>console.log(`Error:${err}`))
+
 
 // GET all users, with optional filter
 router.get("/api/users", (req, res) => {
@@ -29,7 +35,7 @@ router.get("/api/users/:id", getUserIndex, (req, res) => {
 })
 
 // POST a new user
-router.post("/api/users", checkSchema(createUserValidationSchema), (req, res) => {
+router.post("/api/users", checkSchema(createUserValidationSchema), async(req, res) => {
     const result = validationResult(req)
     if (!result.isEmpty()) {
         return res.status(400).send({ error: result.array() })
@@ -37,10 +43,20 @@ router.post("/api/users", checkSchema(createUserValidationSchema), (req, res) =>
 
     const body = matchedData(req)
     const newId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1
-    const newUser = { id: newId, ...body }
-
-    users.push(newUser)
-    return res.status(201).send(newUser)
+    // const newUser = { id: newId, ...body }
+    // users.push(newUser)
+    const newUser = new User(body);
+    try
+    {
+      const savedUser = await newUser.save()
+      return res.status(201).send(savedUser)
+    }
+    catch(err){
+        console.log(err);
+        return res.status(400).send({Msg:"Invalid User"})
+    }
+    //save is asynchrounous so we use await 
+    
 })
 
 // PUT — full update of a user
