@@ -1,0 +1,31 @@
+{
+  "name": "expressjs-course",
+  "version": "1.0.0",
+  "description": "The is the first json package !!!",
+  "homepage": "https://github.com/cathrinemary0208-cloud/Fullstack_internship#readme",
+  "bugs": {
+    "url": "https://github.com/cathrinemary0208-cloud/Fullstack_internship/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cathrinemary0208-cloud/Fullstack_internship.git"
+  },
+  "license": "ISC",
+  "author": "Cathrine",
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon ExpressjsCourse/index.mjs"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "express-validator": "^7.3.2",
+    "mongoose": "^9.9.3",
+    "morgan": "^1.10.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
+  }
+}
