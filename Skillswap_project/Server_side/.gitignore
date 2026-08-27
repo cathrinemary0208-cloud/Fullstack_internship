@@ -1,0 +1,61 @@
+# ==========================================
+# Dependencies
+# ==========================================
+# node_modules can be regenerated anytime with "npm install" using
+# package.json + package-lock.json — never commit it. It's huge
+# (often 100MB+) and platform-specific.
+node_modules/
+client_side/node_modules/
+Server_side/node_modules/
+
+# ==========================================
+# Environment variables / secrets
+# ==========================================
+# Your .env holds your MongoDB URI (with password!) and any other
+# secrets. If this gets pushed to GitHub, treat the password as
+# compromised — rotate it immediately in MongoDB Atlas.
+.env
+.env.local
+.env.development
+.env.production
+Server_side/.env
+client_side/.env
+
+# ==========================================
+# Build output
+# ==========================================
+# Generated automatically by "npm run build" (Vite). No reason to
+# commit compiled output — it's regenerated from source every time.
+dist/
+build/
+client_side/dist/
+client_side/build/
+
+# ==========================================
+# Logs
+# ==========================================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# ==========================================
+# Editor / OS junk files
+# ==========================================
+# VS Code workspace settings (personal to your machine, not the project)
+.vscode/
+# macOS Finder metadata
+.DS_Store
+# Windows thumbnail cache
+Thumbs.db
+
+# ==========================================
+# Testing / coverage output
+# ==========================================
+coverage/
+
+# ==========================================
+# Misc caches
+# ==========================================
+.cache/
+.parcel-cache/
